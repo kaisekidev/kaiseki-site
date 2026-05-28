@@ -1,0 +1,533 @@
+{
+  "org": "kaisekidev",
+  "groups": [
+    {
+      "id": "foundation",
+      "title": "Foundation"
+    },
+    {
+      "id": "wordpress-core",
+      "title": "WordPress Core"
+    },
+    {
+      "id": "wordpress",
+      "title": "WordPress Utilities"
+    },
+    {
+      "id": "integrations",
+      "title": "Plugin Integrations"
+    },
+    {
+      "id": "tooling",
+      "title": "Tooling"
+    }
+  ],
+  "packages": [
+    {
+      "dir": "kaiseki-config",
+      "slug": "config",
+      "title": "kaiseki/config",
+      "description": "Type-safe access to array configurations",
+      "repo": "kaiseki-config",
+      "group": "foundation",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-container-builder",
+      "slug": "container-builder",
+      "title": "kaiseki/container-builder",
+      "description": "Create a PSR-11 container with laminas-servicemanager with laminas-di",
+      "repo": "kaiseki-container-builder",
+      "group": "foundation",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-data",
+      "slug": "data",
+      "title": "kaiseki/data",
+      "description": "Create unified resources and data transfer objects",
+      "repo": "kaiseki-data",
+      "group": "foundation",
+      "hasDocs": true,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-laravel-helper-mocks",
+      "slug": "laravel-helper-mocks",
+      "title": "kaiseki/laravel-helper-mocks",
+      "description": "Mock laravel helper functions",
+      "repo": "kaiseki-laravel-helper-mocks",
+      "group": "foundation",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-nested-array",
+      "slug": "nested-array",
+      "title": "kaiseki/nested-array",
+      "description": "",
+      "repo": "kaiseki-nested-array",
+      "group": "foundation",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-scaffold-module",
+      "slug": "scaffold-module",
+      "title": "kaiseki/scaffold-module",
+      "description": "Scaffold a kaiseki module",
+      "repo": "kaiseki-scaffold-module",
+      "group": "tooling",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-scaffold-wp-module",
+      "slug": "scaffold-wp-module",
+      "title": "kaiseki/scaffold-wp-module",
+      "description": "Scaffold a kaiseki module",
+      "repo": "kaiseki-scaffold-wp-module",
+      "group": "tooling",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-string-filter",
+      "slug": "string-filter",
+      "title": "kaiseki/string-filter",
+      "description": "",
+      "repo": "kaiseki-string-filter",
+      "group": "foundation",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-acf",
+      "slug": "wp-acf",
+      "title": "kaiseki/wp-acf",
+      "description": "ACF Helper Library",
+      "repo": "kaiseki-wp-acf",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-acf-dto",
+      "slug": "wp-acf-dto",
+      "title": "kaiseki/wp-acf-dto",
+      "description": "Easily create DTOs from ACF fields",
+      "repo": "kaiseki-wp-acf-dto",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-admin-menu",
+      "slug": "wp-admin-menu",
+      "title": "kaiseki/wp-admin-menu",
+      "description": "",
+      "repo": "kaiseki-wp-admin-menu",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-block-content-filter",
+      "slug": "wp-block-content-filter",
+      "title": "kaiseki/wp-block-content-filter",
+      "description": "",
+      "repo": "kaiseki-wp-block-content-filter",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-block-editor",
+      "slug": "wp-block-editor",
+      "title": "kaiseki/wp-block-editor",
+      "description": "",
+      "repo": "kaiseki-wp-block-editor",
+      "group": "wordpress-core",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-bunny-optimizer",
+      "slug": "wp-bunny-optimizer",
+      "title": "kaiseki/wp-bunny-optimizer",
+      "description": "",
+      "repo": "kaiseki-wp-bunny-optimizer",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-cli-util",
+      "slug": "wp-cli-util",
+      "title": "kaiseki/wp-cli-util",
+      "description": "",
+      "repo": "kaiseki-wp-cli-util",
+      "group": "wordpress-core",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-config",
+      "slug": "wp-config",
+      "title": "kaiseki/wp-config",
+      "description": "Type-safe access to array configurations",
+      "repo": "kaiseki-wp-config",
+      "group": "wordpress-core",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-context",
+      "slug": "wp-context",
+      "title": "kaiseki/wp-context",
+      "description": "",
+      "repo": "kaiseki-wp-context",
+      "group": "wordpress-core",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-cron",
+      "slug": "wp-cron",
+      "title": "kaiseki/wp-cron",
+      "description": "",
+      "repo": "kaiseki-wp-cron",
+      "group": "wordpress-core",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-dequeue-assets",
+      "slug": "wp-dequeue-assets",
+      "title": "kaiseki/wp-dequeue-assets",
+      "description": "",
+      "repo": "kaiseki-wp-dequeue-assets",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-env",
+      "slug": "wp-env",
+      "title": "kaiseki/wp-env",
+      "description": "WordPress Environment Helper",
+      "repo": "kaiseki-wp-env",
+      "group": "wordpress-core",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-favicon",
+      "slug": "wp-favicon",
+      "title": "kaiseki/wp-favicon",
+      "description": "",
+      "repo": "kaiseki-wp-favicon",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-font-loader",
+      "slug": "wp-font-loader",
+      "title": "kaiseki/wp-font-loader",
+      "description": "Companion module for inpsyde/assets",
+      "repo": "kaiseki-wp-font-loader",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-get-terms-by-post-type",
+      "slug": "wp-get-terms-by-post-type",
+      "title": "kaiseki/wp-get-terms-by-post-type",
+      "description": "",
+      "repo": "kaiseki-wp-get-terms-by-post-type",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-hook",
+      "slug": "wp-hook",
+      "title": "kaiseki/wp-hook",
+      "description": "Register classes with add_filter and add_action hooks",
+      "repo": "kaiseki-wp-hook",
+      "group": "wordpress-core",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-html-attributes",
+      "slug": "wp-html-attributes",
+      "title": "kaiseki/wp-html-attributes",
+      "description": "",
+      "repo": "kaiseki-wp-html-attributes",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-image-sizes",
+      "slug": "wp-image-sizes",
+      "title": "kaiseki/wp-image-sizes",
+      "description": "",
+      "repo": "kaiseki-wp-image-sizes",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-inpsyde-assets",
+      "slug": "wp-inpsyde-assets",
+      "title": "kaiseki/wp-inpsyde-assets",
+      "description": "Companion module for inpsyde/assets",
+      "repo": "kaiseki-wp-inpsyde-assets",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-menu-quick-search-title-only",
+      "slug": "wp-menu-quick-search-title-only",
+      "title": "kaiseki/wp-menu-quick-search-title-only",
+      "description": "",
+      "repo": "kaiseki-wp-menu-quick-search-title-only",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-meta",
+      "slug": "wp-meta",
+      "title": "kaiseki/wp-meta",
+      "description": "",
+      "repo": "kaiseki-wp-meta",
+      "group": "wordpress-core",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-plugin-ninja-forms",
+      "slug": "wp-plugin-ninja-forms",
+      "title": "kaiseki/wp-plugin-ninja-forms",
+      "description": "",
+      "repo": "kaiseki-wp-plugin-ninja-forms",
+      "group": "integrations",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-plugin-ninja-forms-user-management",
+      "slug": "wp-plugin-ninja-forms-user-management",
+      "title": "kaiseki/wp-plugin-ninja-forms-user-management",
+      "description": "",
+      "repo": "kaiseki-wp-plugin-ninja-forms-user-management",
+      "group": "integrations",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-plugin-the-events-calendar",
+      "slug": "wp-plugin-the-events-calendar",
+      "title": "kaiseki/wp-plugin-the-events-calendar",
+      "description": "",
+      "repo": "kaiseki-wp-plugin-the-events-calendar",
+      "group": "integrations",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-plugin-yoast",
+      "slug": "wp-plugin-yoast",
+      "title": "kaiseki/wp-plugin-yoast",
+      "description": "",
+      "repo": "kaiseki-wp-plugin-yoast",
+      "group": "integrations",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-post-types",
+      "slug": "wp-post-types",
+      "title": "kaiseki/wp-post-types",
+      "description": "Companion module for jjgrainger/posttypes",
+      "repo": "kaiseki-wp-post-types",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-preload-featured-image",
+      "slug": "wp-preload-featured-image",
+      "title": "kaiseki/wp-preload-featured-image",
+      "description": "",
+      "repo": "kaiseki-wp-preload-featured-image",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-replace-uploads-url",
+      "slug": "wp-replace-uploads-url",
+      "title": "kaiseki/wp-replace-uploads-url",
+      "description": "",
+      "repo": "kaiseki-wp-replace-uploads-url",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-rest-api",
+      "slug": "wp-rest-api",
+      "title": "kaiseki/wp-rest-api",
+      "description": "",
+      "repo": "kaiseki-wp-rest-api",
+      "group": "wordpress-core",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-reusable-blocks-admin-menu",
+      "slug": "wp-reusable-blocks-admin-menu",
+      "title": "kaiseki/wp-reusable-blocks-admin-menu",
+      "description": "",
+      "repo": "kaiseki-wp-reusable-blocks-admin-menu",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-snicco-better-cli-commands",
+      "slug": "wp-snicco-better-cli-commands",
+      "title": "kaiseki/wp-snicco-better-cli-commands",
+      "description": "",
+      "repo": "kaiseki-wp-snicco-better-cli-commands",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-soil",
+      "slug": "wp-soil",
+      "title": "kaiseki/wp-soil",
+      "description": "Setup roots/soil",
+      "repo": "kaiseki-wp-soil",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-template-renderer",
+      "slug": "wp-template-renderer",
+      "title": "kaiseki/wp-template-renderer",
+      "description": "",
+      "repo": "kaiseki-wp-template-renderer",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-theme-json",
+      "slug": "wp-theme-json",
+      "title": "kaiseki/wp-theme-json",
+      "description": "",
+      "repo": "kaiseki-wp-theme-json",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-two-stage-font-loader",
+      "slug": "wp-two-stage-font-loader",
+      "title": "kaiseki/wp-two-stage-font-loader",
+      "description": "",
+      "repo": "kaiseki-wp-two-stage-font-loader",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-vite",
+      "slug": "wp-vite",
+      "title": "kaiseki/wp-vite",
+      "description": "Companion module for inpsyde/assets",
+      "repo": "kaiseki-wp-vite",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-vite-client",
+      "slug": "wp-vite-client",
+      "title": "kaiseki/wp-vite-client",
+      "description": "",
+      "repo": "kaiseki-wp-vite-client",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    },
+    {
+      "dir": "kaiseki-wp-wp-rocket",
+      "slug": "wp-wp-rocket",
+      "title": "kaiseki/wp-wp-rocket",
+      "description": "",
+      "repo": "kaiseki-wp-wp-rocket",
+      "group": "wordpress",
+      "hasDocs": false,
+      "hidden": false,
+      "order": null
+    }
+  ]
+}

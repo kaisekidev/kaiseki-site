@@ -1,0 +1,25 @@
+# build output
+dist/
+.output/
+
+# astro
+.astro/
+
+# dependencies
+node_modules/
+
+# pagefind cache
+**/pagefind/
+
+# logs
+*.log
+npm-debug.log*
+
+# environment
+.env
+.env.production
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/

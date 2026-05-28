@@ -1,0 +1,94 @@
+---
+import { getNavModel, withBase } from '@/lib/docs'
+
+interface Props {
+  class?: string
+}
+const { class: className } = Astro.props
+
+const model = await getNavModel()
+
+const stripSlash = (p: string) => (p.length > 1 ? p.replace(/\/$/, '') : p)
+const current = stripSlash(Astro.url.pathname)
+const home = stripSlash(withBase('/'))
+
+const isCurrent = (path: string) => stripSlash(withBase(path)) === current
+const isActivePackage = (path: string) => {
+  const base = stripSlash(withBase(path))
+  return current === base || current.startsWith(base + '/')
+}
+
+const linkClass = (active: boolean) =>
+  active
+    ? 'font-semibold text-red-500 before:bg-red-500'
+    : 'text-neutral-700 before:hidden before:bg-neutral-700 hover:text-neutral-900 hover:before:block dark:text-neutral-200 dark:before:bg-neutral-400 dark:hover:text-white'
+---
+
+<nav class:list={['text-base lg:text-sm', className]}>
+  <ul role="list" class="space-y-9">
+    <li>
+      <h2 class="font-display text-xl font-medium text-neutral-900 dark:text-paper">Introduction</h2>
+      <ul
+        role="list"
+        class="mt-2 space-y-2 border-l-2 border-neutral-100 lg:mt-4 lg:border-neutral-200 dark:border-neutral-800"
+      >
+        <li class="relative">
+          <a
+            href={withBase('/')}
+            class:list={[
+              'block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-0.5 before:top-1/2 before:h-full before:w-0.5 before:-translate-y-1/2',
+              linkClass(current === home),
+            ]}
+          >
+            Getting started
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    {
+      model.groups.map((groupNav) => (
+        <li>
+          <h2 class="font-display text-xl font-medium text-neutral-900 dark:text-paper">
+            {groupNav.group.title}
+          </h2>
+          <ul
+            role="list"
+            class="mt-2 space-y-2 border-l-2 border-neutral-100 lg:mt-4 lg:border-neutral-200 dark:border-neutral-800"
+          >
+            {groupNav.packages.map((pkgNav) => (
+              <li class="relative">
+                <a
+                  href={withBase(pkgNav.page.path)}
+                  class:list={[
+                    'block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-0.5 before:top-1/2 before:h-full before:w-0.5 before:-translate-y-1/2',
+                    linkClass(isCurrent(pkgNav.page.path)),
+                  ]}
+                >
+                  {pkgNav.pkg.title}
+                </a>
+                {pkgNav.docs.length > 0 && isActivePackage(pkgNav.page.path) && (
+                  <ul role="list" class="mt-1 space-y-1">
+                    {pkgNav.docs.map((doc) => (
+                      <li class="relative">
+                        <a
+                          href={withBase(doc.path)}
+                          class:list={[
+                            'block w-full pl-6 text-sm before:pointer-events-none before:absolute before:-left-0.5 before:top-1/2 before:h-full before:w-0.5 before:-translate-y-1/2',
+                            linkClass(isCurrent(doc.path)),
+                          ]}
+                        >
+                          {doc.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

@@ -1,0 +1,65 @@
+---
+import '@/styles/tailwind.css'
+import Header from '@/components/Header.astro'
+import Navigation from '@/components/Navigation.astro'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = 'Kaiseki — Modern WordPress & PHP building blocks',
+  description = 'Documentation for the kaiseki suite of composer packages: type-safe configuration, dependency injection, WordPress helpers and more.',
+} = Astro.props
+
+const fullTitle = title.includes('Kaiseki') ? title : `${title} — Kaiseki`
+---
+
+<!doctype html>
+<html lang="en" class="h-full antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}icon.svg`} type="image/svg+xml" />
+    <link rel="alternate icon" href={`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}favicon.ico`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Teko:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Apply the persisted theme before paint to avoid a flash. -->
+    <script is:inline>
+      ;(function () {
+        try {
+          var theme = localStorage.getItem('theme')
+          var dark =
+            theme === 'dark' ||
+            ((!theme || theme === 'system') &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.classList.toggle('dark', dark)
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body class="flex min-h-full bg-paper dark:bg-neutral-900">
+    <div class="flex w-full flex-col">
+      <Header />
+      <slot name="hero" />
+      <div class="relative mx-auto flex w-full max-w-8xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
+        <div class="hidden lg:relative lg:block lg:flex-none">
+          <div class="absolute inset-y-0 right-0 w-[50vw] bg-paper dark:hidden"></div>
+          <div class="absolute bottom-0 right-0 top-16 hidden h-12 w-px bg-gradient-to-t from-neutral-800 dark:block"></div>
+          <div class="absolute bottom-0 right-0 top-28 hidden w-px bg-neutral-800 dark:block"></div>
+          <div class="sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-y-auto overflow-x-hidden border-r py-16 pl-0.5 pr-8 xl:w-72 xl:pr-16">
+            <Navigation />
+          </div>
+        </div>
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>

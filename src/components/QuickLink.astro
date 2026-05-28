@@ -1,0 +1,31 @@
+---
+import Icon from './Icon.astro'
+
+interface Props {
+  title: string
+  description: string
+  href: string
+  icon: 'installation' | 'presets' | 'plugins' | 'theming' | 'lightbulb' | 'warning'
+}
+
+const { title, description, href, icon } = Astro.props
+---
+
+<div class="group relative rounded-xl border border-neutral-200 dark:border-neutral-800">
+  <div
+    class="absolute -inset-px rounded-xl border-2 border-red-500 opacity-0 group-hover:opacity-100 dark:[--quick-links-hover-bg:theme(colors.slate.800)]"
+  >
+  </div>
+  <div class="relative overflow-hidden rounded-xl p-6">
+    <Icon icon={icon} class="h-8 w-8" />
+    <h2 class="mt-4 font-display text-xl text-neutral-900 dark:text-paper">
+      <a href={href}>
+        <span class="absolute -inset-px rounded-xl"></span>
+        {title}
+      </a>
+    </h2>
+    <p class="mt-1 text-sm text-neutral-700 dark:text-neutral-400">
+      {description}
+    </p>
+  </div>
+</div>

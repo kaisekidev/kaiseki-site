@@ -1,0 +1,37 @@
+---
+interface Props {
+  id: string
+  color?: 'red' | 'blue' | 'amber'
+  gradientTransform?: string
+}
+
+const gradients: Record<string, Array<{ stopColor: string; offset?: string | number }>> = {
+  red: [
+    { stopColor: 'hsl(6, 93%, 94%)', offset: '.08' },
+    { stopColor: 'hsl(7, 86%, 60%)', offset: '.837' },
+  ],
+  blue: [
+    { stopColor: '#0EA5E9' },
+    { stopColor: '#22D3EE', offset: '.527' },
+    { stopColor: '#818CF8', offset: 1 },
+  ],
+  amber: [
+    { stopColor: '#FDE68A', offset: '.08' },
+    { stopColor: '#F59E0B', offset: '.837' },
+  ],
+}
+
+const { id, color = 'blue', gradientTransform } = Astro.props
+const stops = gradients[color]
+---
+
+<radialGradient
+  id={id}
+  cx={0}
+  cy={0}
+  r={1}
+  gradientUnits="userSpaceOnUse"
+  gradientTransform={gradientTransform}
+>
+  {stops.map((stop) => <stop stop-color={stop.stopColor} offset={stop.offset} />)}
+</radialGradient>

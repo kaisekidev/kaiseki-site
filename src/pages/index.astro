@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Hero from '@/components/Hero.astro'
+import DocsHeader from '@/components/DocsHeader.astro'
+import Prose from '@/components/Prose.astro'
+import QuickLinks from '@/components/QuickLinks.astro'
+import QuickLink from '@/components/QuickLink.astro'
+import { Code } from 'astro:components'
+import { getNavModel, withBase } from '@/lib/docs'
+import { org } from '@/config/packages'
+
+const model = await getNavModel()
+const firstPackage = model.groups[0]?.packages[0]
+const primaryHref = firstPackage ? withBase(firstPackage.page.path) : withBase('/')
+
+// Pick a few representative packages for the quick-link cards (fall back gracefully).
+const find = (slug: string) =>
+  model.groups.flatMap((g) => g.packages).find((p) => p.pkg.slug === slug)
+const cards = [
+  { pkg: find('container-builder'), icon: 'installation' as const, desc: 'Bootstrap a PSR-11 dependency-injection container in minutes.' },
+  { pkg: find('config'), icon: 'presets' as const, desc: 'Type-safe, dot-notation access to array configuration.' },
+  { pkg: find('wp-hook'), icon: 'plugins' as const, desc: 'Register WordPress actions and filters straight from your classes.' },
+  { pkg: find('data'), icon: 'theming' as const, desc: 'Powerful, unified data objects and resources.' },
+].filter((c) => c.pkg)
+---
+
+<BaseLayout title="Kaiseki — Modern building blocks for WordPress">
+  <Hero slot="hero" primaryHref={primaryHref} githubHref={`https://github.com/${org}`} />
+
+  <div class="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pl-8 lg:pr-0 xl:px-16">
+    <article>
+      <DocsHeader title="Getting started" eyebrow="Introduction" />
+      <Prose>
+        <p class="lead">
+          Kaiseki is a collection of small, focused composer packages for building high-quality
+          WordPress themes, plugins and PHP applications with modern development practices — strict
+          types, dependency injection and clean, testable code.
+        </p>
+
+        <p>
+          Every package is published under the <code>kaiseki/*</code> namespace and documented here
+          straight from its own <code>README</code> and <code>docs/</code> folder. Browse the
+          packages in the sidebar, or start with the essentials below.
+        </p>
+
+        <QuickLinks>
+          {cards.map((c) => (
+            <QuickLink
+              title={c.pkg!.pkg.title}
+              description={c.desc}
+              href={withBase(c.pkg!.page.path)}
+              icon={c.icon}
+            />
+          ))}
+        </QuickLinks>
+
+        <h2>Quick start</h2>
+        <p>
+          Most projects begin with a dependency-injection container and a few config providers.
+          Install the container builder and the WordPress hook package:
+        </p>
+
+        <Code
+          code={`composer require kaiseki/container-builder kaiseki/wp-hook`}
+          lang="bash"
+          theme="github-dark"
+        />
+
+        <p>
+          Then bootstrap your container — typically at the top of a theme's
+          <code>functions.php</code>:
+        </p>
+
+        <Code
+          code={`<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/vendor/autoload.php';
+
+$container = (new \\Kaiseki\\ContainerBuilder\\ContainerBuilder(
+    require __DIR__ . '/resources/config-providers.php',
+))
+    ->withConfigFolder(__DIR__ . '/resources/config')
+    ->build();
+
+$container
+    ->get(\\Kaiseki\\WordPress\\Hook\\HookCallbackProviderRegistry::class)
+    ->registerCallbacks();`}
+          lang="php"
+          theme="github-dark"
+        />
+
+        <p>
+          From there, pull in whichever packages you need — each one is self-contained and
+          documented in its own section.
+        </p>
+      </Prose>
+    </article>
+  </div>
+</BaseLayout>

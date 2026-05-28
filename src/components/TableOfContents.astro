@@ -1,0 +1,120 @@
+---
+import type { MarkdownHeading } from 'astro'
+
+interface Props {
+  headings: MarkdownHeading[]
+}
+
+const { headings } = Astro.props
+
+interface Section {
+  slug: string
+  text: string
+  children: { slug: string; text: string }[]
+}
+
+const sections: Section[] = []
+for (const h of headings) {
+  if (h.depth === 2) {
+    sections.push({ slug: h.slug, text: h.text, children: [] })
+  } else if (h.depth === 3 && sections.length > 0) {
+    sections[sections.length - 1].children.push({ slug: h.slug, text: h.text })
+  }
+}
+---
+
+<div
+  class="hidden xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-6"
+>
+  <nav aria-labelledby="on-this-page-title" class="w-56" data-toc>
+    {
+      sections.length > 0 && (
+        <>
+          <h2
+            id="on-this-page-title"
+            class="font-display text-xl font-medium text-neutral-900 dark:text-paper"
+          >
+            On this page
+          </h2>
+          <ol role="list" class="mt-4 space-y-3 text-sm">
+            {sections.map((section) => (
+              <li>
+                <h3>
+                  <a
+                    href={`#${section.slug}`}
+                    data-toc-link={section.slug}
+                    class="font-normal text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300"
+                  >
+                    {section.text}
+                  </a>
+                </h3>
+                {section.children.length > 0 && (
+                  <ol role="list" class="mt-2 space-y-3 pl-5 text-neutral-500 dark:text-neutral-400">
+                    {section.children.map((sub) => (
+                      <li>
+                        <a
+                          href={`#${sub.slug}`}
+                          data-toc-link={sub.slug}
+                          class="hover:text-neutral-600 dark:hover:text-neutral-300"
+                        >
+                          {sub.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+              </li>
+            ))}
+          </ol>
+        </>
+      )
+    }
+  </nav>
+</div>
+
+<style>
+  [data-toc] a[data-toc-link].active {
+    color: hsl(var(--color-red-500));
+  }
+</style>
+
+<script>
+  function initToc() {
+    const links = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>('[data-toc] a[data-toc-link]'),
+    )
+    if (links.length === 0) return
+
+    const headings = links
+      .map((link) => {
+        const id = link.dataset.tocLink!
+        const el = document.getElementById(id)
+        return el ? { id, el, link } : null
+      })
+      .filter((x): x is { id: string; el: HTMLElement; link: HTMLAnchorElement } => x !== null)
+
+    function onScroll() {
+      const top = window.scrollY
+      let currentId = headings[0]?.id
+      for (const h of headings) {
+        const style = window.getComputedStyle(h.el)
+        const scrollMt = parseFloat(style.scrollMarginTop) || 0
+        const elTop = window.scrollY + h.el.getBoundingClientRect().top - scrollMt
+        if (top >= elTop - 10) {
+          currentId = h.id
+        } else {
+          break
+        }
+      }
+      for (const link of links) {
+        link.classList.toggle('active', link.dataset.tocLink === currentId)
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+  }
+
+  initToc()
+  document.addEventListener('astro:after-swap', initToc)
+</script>

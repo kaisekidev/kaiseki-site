@@ -1,0 +1,40 @@
+@import 'tailwindcss/base';
+@import './prism.css';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  [inert] ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* rehype-autolink-headings wraps each heading in an anchor; keep them looking
+     like headings (not body links) while staying clickable. */
+  .prose :where(h1, h2, h3, h4, h5, h6) a {
+    color: inherit;
+    font-weight: inherit;
+    text-decoration: none;
+  }
+  .prose :where(h1, h2, h3, h4, h5, h6) a:hover {
+    text-decoration: none;
+  }
+
+  :root {
+    --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Teko', ui-sans-serif, system-ui, sans-serif;
+
+    --color-paper: 37deg 89% 96%;
+
+    --color-red-50: 7deg 90% 96%;
+    --color-red-100: 7deg 84% 93%;
+    --color-red-200: 7deg 86% 85%;
+    --color-red-300: 7deg 86% 78%;
+    --color-red-400: 7deg 86% 71%;
+    --color-red-500: 7deg 86% 60%;
+    --color-red-600: 7deg 86% 55%;
+    --color-red-700: 7deg 86% 44%;
+    --color-red-800: 7deg 87% 33%;
+    --color-red-900: 7deg 86% 22%;
+    --color-red-950: 8deg 86% 11%;
+  }
+}
