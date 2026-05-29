@@ -35,18 +35,18 @@ const bundlePath = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'pagefind/'
 <style is:global>
   /* Tailor Pagefind's default UI to the Syntax red/dark theme. */
   #pagefind-search {
-    --pagefind-ui-primary: hsl(var(--color-red-500));
-    --pagefind-ui-text: theme('colors.neutral.700');
+    --pagefind-ui-primary: var(--color-red-500);
+    --pagefind-ui-text: var(--color-neutral-700);
     --pagefind-ui-background: transparent;
-    --pagefind-ui-border: theme('colors.neutral.200');
-    --pagefind-ui-tag: theme('colors.neutral.100');
+    --pagefind-ui-border: var(--color-neutral-200);
+    --pagefind-ui-tag: var(--color-neutral-100);
     --pagefind-ui-border-radius: 0.5rem;
-    --pagefind-ui-font: var(--font-inter);
+    --pagefind-ui-font: var(--font-sans);
   }
   .dark #pagefind-search {
-    --pagefind-ui-text: theme('colors.neutral.200');
-    --pagefind-ui-border: theme('colors.neutral.700');
-    --pagefind-ui-tag: theme('colors.neutral.800');
+    --pagefind-ui-text: var(--color-neutral-200);
+    --pagefind-ui-border: var(--color-neutral-700);
+    --pagefind-ui-tag: var(--color-neutral-800);
   }
 </style>
 

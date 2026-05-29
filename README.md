@@ -49,7 +49,7 @@ To **re-seed** the manifest from the sibling checkouts (adds new packages, prese
 overrides):
 
 ```bash
-npm run gen:packages
+pnpm gen:packages
 ```
 
 ## Local development
@@ -62,17 +62,17 @@ node scripts/clone-packages.mjs          # clone missing repos as siblings
 UPDATE_EXISTING=1 node scripts/clone-packages.mjs  # also `git pull` existing ones
 ```
 
-Then:
+Then (this project uses **pnpm**; requires Node ≥ 22.12 for Astro 6):
 
 ```bash
-npm install
-npm run dev        # http://localhost:4321/kaiseki-site
-npm run build      # static output in dist/ (also builds the Pagefind index)
-npm run preview
+pnpm install
+pnpm dev        # http://localhost:4321/kaiseki-site
+pnpm build      # static output in dist/ (also builds the Pagefind index)
+pnpm preview
 ```
 
-> Search is powered by Pagefind, which indexes the **built** site. It works in `npm run build` /
-> `npm run preview` and on the deployed site; in `npm run dev` the index may be empty.
+> Search is powered by Pagefind, which indexes the **built** site. It works in `pnpm build` /
+> `pnpm preview` and on the deployed site; in `pnpm dev` the index may be empty.
 
 ## Deployment & rebuild-on-update
 

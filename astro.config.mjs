@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config'
-import tailwind from '@astrojs/tailwind'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import pagefind from 'astro-pagefind'
+import tailwindcss from '@tailwindcss/vite'
+import { unified } from '@astrojs/markdown-remark'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
@@ -16,18 +17,17 @@ export default defineConfig({
   site,
   base,
   trailingSlash: 'ignore',
-  integrations: [
-    tailwind({ applyBaseStyles: false }),
-    mdx(),
-    sitemap(),
-    pagefind(),
-  ],
+  integrations: [mdx(), sitemap(), pagefind()],
+  // Tailwind v4 is wired through its Vite plugin (no @astrojs/tailwind / PostCSS).
+  vite: {
+    plugins: [tailwindcss()],
+  },
   markdown: {
     // Reuse the Syntax template's Prism token CSS (src/styles/prism.css).
     syntaxHighlight: 'prism',
-    rehypePlugins: [
-      rehypeSlug,
-      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
-    ],
+    // Astro 6: remark/rehype plugins are configured on the processor.
+    processor: unified({
+      rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]],
+    }),
   },
 })

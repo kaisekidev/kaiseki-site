@@ -44,11 +44,11 @@ const themes = [
 
 <style>
   .theme-btn.selected {
-    fill: hsl(var(--color-red-500));
+    fill: var(--color-red-500);
     background-color: rgb(0 0 0 / 0.05);
   }
   :global(.dark) .theme-btn.selected {
-    background-color: hsl(var(--color-paper) / 0.1);
+    background-color: color-mix(in srgb, var(--color-paper) 10%, transparent);
   }
 </style>
 

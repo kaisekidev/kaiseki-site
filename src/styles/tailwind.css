@@ -1,40 +1,79 @@
-@import 'tailwindcss/base';
+@import 'tailwindcss';
 @import './prism.css';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+
+/* Tailwind v4 plugins / variants (replaces tailwind.config.ts). */
+@plugin '@tailwindcss/typography';
+
+/* Class-based dark mode (was darkMode: 'selector' in v3). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Fonts — loaded via Google Fonts <link> in BaseLayout. */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Teko', ui-sans-serif, system-ui, sans-serif;
+  --font-display--font-feature-settings: 'ss01';
+
+  /* Custom type scale (matches the Syntax template). */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1rem;
+  --text-base--line-height: 2rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2.5rem;
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 2.5rem;
+  --text-4xl: 2.5rem;
+  --text-4xl--line-height: 3rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.5rem;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-8xl: 6rem;
+  --text-8xl--line-height: 1;
+  --text-9xl: 8rem;
+  --text-9xl--line-height: 1;
+
+  /* max-w-8xl */
+  --container-8xl: 88rem;
+
+  /* Brand colors. `paper` is the warm off-white background; the red scale is the
+     Kaiseki accent (replaces Tailwind's default red). */
+  --color-paper: hsl(37 89% 96%);
+  --color-red-50: hsl(7 90% 96%);
+  --color-red-100: hsl(7 84% 93%);
+  --color-red-200: hsl(7 86% 85%);
+  --color-red-300: hsl(7 86% 78%);
+  --color-red-400: hsl(7 86% 71%);
+  --color-red-500: hsl(7 86% 60%);
+  --color-red-600: hsl(7 86% 55%);
+  --color-red-700: hsl(7 86% 44%);
+  --color-red-800: hsl(7 87% 33%);
+  --color-red-900: hsl(7 86% 22%);
+  --color-red-950: hsl(8 86% 11%);
+}
 
 @layer base {
   [inert] ::-webkit-scrollbar {
     display: none;
   }
+}
 
-  /* rehype-autolink-headings wraps each heading in an anchor; keep them looking
-     like headings (not body links) while staying clickable. */
-  .prose :where(h1, h2, h3, h4, h5, h6) a {
-    color: inherit;
-    font-weight: inherit;
-    text-decoration: none;
-  }
-  .prose :where(h1, h2, h3, h4, h5, h6) a:hover {
-    text-decoration: none;
-  }
-
-  :root {
-    --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-display: 'Teko', ui-sans-serif, system-ui, sans-serif;
-
-    --color-paper: 37deg 89% 96%;
-
-    --color-red-50: 7deg 90% 96%;
-    --color-red-100: 7deg 84% 93%;
-    --color-red-200: 7deg 86% 85%;
-    --color-red-300: 7deg 86% 78%;
-    --color-red-400: 7deg 86% 71%;
-    --color-red-500: 7deg 86% 60%;
-    --color-red-600: 7deg 86% 55%;
-    --color-red-700: 7deg 86% 44%;
-    --color-red-800: 7deg 87% 33%;
-    --color-red-900: 7deg 86% 22%;
-    --color-red-950: 8deg 86% 11%;
-  }
+/* rehype-autolink-headings wraps each heading in an anchor; keep them looking
+   like headings (not body links) while staying clickable. Unlayered so it wins
+   over the typography plugin's `prose-a` utilities (which live in @layer utilities). */
+.prose :where(h1, h2, h3, h4, h5, h6) a {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+.prose :where(h1, h2, h3, h4, h5, h6) a:hover {
+  text-decoration: none;
 }

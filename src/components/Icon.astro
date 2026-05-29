@@ -11,10 +11,10 @@ interface Props {
 }
 
 const iconStyles: Record<IconColor, string> = {
-  red: '[--icon-foreground:theme(colors.slate.900)] [--icon-background:theme(colors.white)] [--icon-color:theme(colors.red.200)]',
-  blue: '[--icon-foreground:theme(colors.slate.900)] [--icon-background:theme(colors.white)]',
+  red: '[--icon-foreground:var(--color-slate-900)] [--icon-background:var(--color-white)] [--icon-color:var(--color-red-200)]',
+  blue: '[--icon-foreground:var(--color-slate-900)] [--icon-background:var(--color-white)]',
   amber:
-    '[--icon-foreground:theme(colors.amber.900)] [--icon-background:theme(colors.amber.100)]',
+    '[--icon-foreground:var(--color-amber-900)] [--icon-background:var(--color-amber-100)]',
 }
 
 const { icon, color = 'red', class: className } = Astro.props
