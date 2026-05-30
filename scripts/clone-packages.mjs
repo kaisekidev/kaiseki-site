@@ -34,6 +34,7 @@ function run(cmd, args, cwd) {
 let cloned = 0
 let updated = 0
 let skipped = 0
+const failed = []
 
 for (const pkg of config.packages) {
   if (pkg.hidden) continue
@@ -59,8 +60,21 @@ for (const pkg of config.packages) {
   const args = ['clone', '--depth', '1']
   if (branch) args.push('--branch', branch)
   args.push(repoUrl, dest)
-  run('git', args, packagesRoot)
-  cloned++
+  // A single unreachable repo (renamed, deleted, private without a token) must
+  // not blackhole the whole site build — skip it and report at the end. The
+  // package's page is simply absent from this deploy.
+  try {
+    run('git', args, packagesRoot)
+    cloned++
+  } catch {
+    console.warn(`  ✗ Failed to clone ${org}/${pkg.repo} — skipping (its docs page will be omitted)`)
+    failed.push(pkg.repo)
+  }
 }
 
-console.log(`\nDone. cloned=${cloned} updated=${updated} skipped(existing)=${skipped}`)
+console.log(
+  `\nDone. cloned=${cloned} updated=${updated} skipped(existing)=${skipped} failed=${failed.length}`,
+)
+if (failed.length) {
+  console.warn(`⚠ Could not clone: ${failed.join(', ')}`)
+}

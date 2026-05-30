@@ -3,7 +3,7 @@ name: Build & Deploy
 on:
   # Rebuild on changes to the site itself.
   push:
-    branches: [main]
+    branches: [master]
   # Manual rebuilds.
   workflow_dispatch:
   # Rebuild whenever a package in the kaiseki namespace is updated.

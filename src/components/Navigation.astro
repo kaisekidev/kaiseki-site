@@ -65,7 +65,7 @@ const linkClass = (active: boolean) =>
                     linkClass(isCurrent(pkgNav.page.path)),
                   ]}
                 >
-                  {pkgNav.pkg.title}
+                  {pkgNav.pkg.title.replace(/^kaiseki\//, '')}
                 </a>
                 {pkgNav.docs.length > 0 && isActivePackage(pkgNav.page.path) && (
                   <ul role="list" class="mt-1 space-y-1">

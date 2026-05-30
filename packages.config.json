@@ -53,7 +53,7 @@
       "repo": "kaiseki-data",
       "group": "foundation",
       "hasDocs": true,
-      "hidden": false,
+      "hidden": true,
       "order": null
     },
     {

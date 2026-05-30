@@ -6,11 +6,14 @@ import Navigation from '@/components/Navigation.astro'
 interface Props {
   title?: string
   description?: string
+  /** GitHub link target for the header icon. Defaults to the org page. */
+  githubUrl?: string
 }
 
 const {
   title = 'Kaiseki — Modern WordPress & PHP building blocks',
   description = 'Documentation for the kaiseki suite of composer packages: type-safe configuration, dependency injection, WordPress helpers and more.',
+  githubUrl,
 } = Astro.props
 
 const fullTitle = title.includes('Kaiseki') ? title : `${title} — Kaiseki`
@@ -47,7 +50,7 @@ const fullTitle = title.includes('Kaiseki') ? title : `${title} — Kaiseki`
   </head>
   <body class="flex min-h-full bg-paper dark:bg-neutral-900">
     <div class="flex w-full flex-col">
-      <Header />
+      <Header githubUrl={githubUrl} />
       <slot name="hero" />
       <div class="relative mx-auto flex w-full max-w-8xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
         <div class="hidden lg:relative lg:block lg:flex-none">

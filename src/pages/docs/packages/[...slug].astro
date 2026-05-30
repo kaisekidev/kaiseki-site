@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content'
 import DocsLayout from '@/layouts/DocsLayout.astro'
 import { getNavModel, prevNext } from '@/lib/docs'
+import { org } from '@/config/packages'
 
 export async function getStaticPaths() {
   const model = await getNavModel()
@@ -15,6 +16,7 @@ export async function getStaticPaths() {
   const paths = []
   for (const groupNav of model.groups) {
     for (const pkgNav of groupNav.packages) {
+      const githubUrl = `https://github.com/${org}/${pkgNav.pkg.repo}`
       // Package overview (README).
       const readme = byKey.get(`packageReadmes:${pkgNav.page.entryId}`)
       if (readme) {
@@ -25,6 +27,7 @@ export async function getStaticPaths() {
             title: pkgNav.page.title,
             eyebrow: groupNav.group.title,
             description: pkgNav.pkg.description,
+            githubUrl,
             ...prevNext(model, pkgNav.page.slug),
           },
         })
@@ -40,6 +43,7 @@ export async function getStaticPaths() {
             title: doc.title,
             eyebrow: pkgNav.pkg.title,
             description: pkgNav.pkg.description,
+            githubUrl,
             ...prevNext(model, doc.slug),
           },
         })
@@ -49,7 +53,7 @@ export async function getStaticPaths() {
   return paths
 }
 
-const { entry, title, eyebrow, description, prev, next } = Astro.props
+const { entry, title, eyebrow, description, githubUrl, prev, next } = Astro.props
 const { Content, headings } = await render(entry)
 ---
 
@@ -58,6 +62,7 @@ const { Content, headings } = await render(entry)
   eyebrow={eyebrow}
   description={description}
   headings={headings}
+  githubUrl={githubUrl}
   prev={prev}
   next={next}
 >

@@ -7,6 +7,16 @@ import { unified } from '@astrojs/markdown-remark'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
+// Package markdown (READMEs especially) opens with an h1 that repeats the page
+// title we already render in DocsHeader. Drop the first top-level h1 so it isn't
+// shown twice; the <header> title stays.
+function rehypeStripLeadingH1() {
+  return (tree) => {
+    const i = tree.children.findIndex((n) => n.type === 'element' && n.tagName === 'h1')
+    if (i !== -1) tree.children.splice(i, 1)
+  }
+}
+
 // The public URL the site is deployed under. For GitHub Pages project sites this
 // is https://<org>.github.io/<repo>. Override via SITE / BASE env vars in CI.
 const site = process.env.SITE ?? 'https://kaisekidev.github.io'
@@ -27,7 +37,7 @@ export default defineConfig({
     syntaxHighlight: 'prism',
     // Astro 6: remark/rehype plugins are configured on the processor.
     processor: unified({
-      rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]],
+      rehypePlugins: [rehypeStripLeadingH1, rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]],
     }),
   },
 })
