@@ -66,6 +66,33 @@
   }
 }
 
+/* Inline code. The typography plugin wraps inline `code` in literal backtick
+   pseudo-elements and bolds it; drop both and give it a pill background instead.
+   Scoped to `:not(pre code)` so fenced code blocks stay owned by Prism. */
+.prose :where(code):not(:where(pre code, [class~='not-prose'] *))::before,
+.prose :where(code):not(:where(pre code, [class~='not-prose'] *))::after {
+  content: none;
+}
+.prose :where(code):not(:where(pre code, [class~='not-prose'] *)) {
+  font-weight: 500;
+  font-size: 0.875em;
+  border-radius: 0.3rem;
+  padding: 0.1em 0.35em;
+  background-color: hsl(0 0% 0% / 0.06);
+  color: var(--color-red-700);
+  /* Keep the box tight to the glyphs without disturbing line height. */
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.dark .prose :where(code):not(:where(pre code, [class~='not-prose'] *)) {
+  background-color: hsl(0 0% 100% / 0.08);
+  color: var(--color-red-300);
+}
+/* Don't recolor inline code inside links — let it follow the link color. */
+.prose :where(a code):not(:where(pre code)) {
+  color: inherit;
+}
+
 /* rehype-autolink-headings wraps each heading in an anchor; keep them looking
    like headings (not body links) while staying clickable. Unlayered so it wins
    over the typography plugin's `prose-a` utilities (which live in @layer utilities). */
