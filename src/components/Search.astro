@@ -76,6 +76,7 @@ const bundlePath = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'pagefind/'
           bundlePath,
           showSubResults: true,
           showImages: false,
+          autofocus: true,
         })
       } catch (err) {
         initialized = false
@@ -83,10 +84,19 @@ const bundlePath = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'pagefind/'
       }
     }
 
-    function open() {
-      ensureUI()
+    // The Pagefind input is mounted asynchronously (lazy import + Svelte mount),
+    // so it may not exist on the first open. Retry across a few frames until it
+    // appears so ⌘K lands focus and you can type immediately.
+    function focusInput(attempts = 0) {
+      const input = dialog.querySelector('input')
+      if (input) input.focus()
+      else if (attempts < 20) requestAnimationFrame(() => focusInput(attempts + 1))
+    }
+
+    async function open() {
       dialog.showModal()
-      setTimeout(() => dialog.querySelector('input')?.focus(), 50)
+      await ensureUI()
+      focusInput()
     }
     function close() {
       dialog.close()
