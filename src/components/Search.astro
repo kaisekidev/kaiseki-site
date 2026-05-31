@@ -62,7 +62,15 @@ const bundlePath = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'pagefind/'
       if (initialized) return
       initialized = true
       try {
-        const { PagefindUI } = await import(/* @vite-ignore */ `${bundlePath}pagefind-ui.js`)
+        // pagefind-ui.js is an IIFE bundle, not an ES module: it assigns the
+        // constructor to window.PagefindUI and exports nothing. Import it for
+        // its side effect, then read the global (destructuring the module
+        // namespace yields undefined → "PagefindUI is not a constructor").
+        await import(/* @vite-ignore */ `${bundlePath}pagefind-ui.js`)
+        const PagefindUI = window.PagefindUI
+        if (typeof PagefindUI !== 'function') {
+          throw new Error('window.PagefindUI was not defined after loading pagefind-ui.js')
+        }
         new PagefindUI({
           element: '#pagefind-search',
           bundlePath,
@@ -70,7 +78,8 @@ const bundlePath = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'pagefind/'
           showImages: false,
         })
       } catch (err) {
-        console.warn('Pagefind is only available in a built site (run `astro build`).', err)
+        initialized = false
+        console.warn('Pagefind failed to initialize (search is only available in a built site).', err)
       }
     }
 
