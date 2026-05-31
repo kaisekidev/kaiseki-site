@@ -17,6 +17,12 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+# Run the bundled JS actions on Node 24 instead of the deprecated Node 20.
+# The action majors above don't yet ship a Node 24 runtime of their own, so we
+# opt in via the runner flag; drop this once they default to Node 24.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write
