@@ -17,10 +17,12 @@ function rehypeStripLeadingH1() {
   }
 }
 
-// The public URL the site is deployed under. For GitHub Pages project sites this
-// is https://<org>.github.io/<repo>. Override via SITE / BASE env vars in CI.
-const site = process.env.SITE ?? 'https://kaisekidev.github.io'
-const base = process.env.BASE ?? '/kaiseki-site'
+// The public URL the site is deployed under. We serve from the apex custom
+// domain kaiseki.dev, so the site lives at the root (base '/'). In CI the
+// configure-pages step overrides SITE / BASE from the Pages custom-domain
+// setting; these defaults keep local builds and any fallback in sync.
+const site = process.env.SITE ?? 'https://kaiseki.dev'
+const base = process.env.BASE ?? '/'
 
 // https://astro.build/config
 export default defineConfig({
