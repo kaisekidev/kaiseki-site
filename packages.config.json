@@ -46,17 +46,6 @@
       "order": null
     },
     {
-      "dir": "kaiseki-data",
-      "slug": "data",
-      "title": "kaiseki/data",
-      "description": "Create unified resources and data transfer objects",
-      "repo": "kaiseki-data",
-      "group": "foundation",
-      "hasDocs": true,
-      "hidden": true,
-      "order": null
-    },
-    {
       "dir": "kaiseki-laravel-helper-mocks",
       "slug": "laravel-helper-mocks",
       "title": "kaiseki/laravel-helper-mocks",
@@ -84,17 +73,6 @@
       "title": "kaiseki/scaffold-module",
       "description": "Scaffold a kaiseki module",
       "repo": "kaiseki-scaffold-module",
-      "group": "tooling",
-      "hasDocs": false,
-      "hidden": false,
-      "order": null
-    },
-    {
-      "dir": "kaiseki-scaffold-wp-module",
-      "slug": "scaffold-wp-module",
-      "title": "kaiseki/scaffold-wp-module",
-      "description": "Scaffold a kaiseki module",
-      "repo": "kaiseki-scaffold-wp-module",
       "group": "tooling",
       "hasDocs": false,
       "hidden": false,
@@ -183,17 +161,6 @@
       "title": "kaiseki/wp-cli-util",
       "description": "",
       "repo": "kaiseki-wp-cli-util",
-      "group": "wordpress-core",
-      "hasDocs": false,
-      "hidden": false,
-      "order": null
-    },
-    {
-      "dir": "kaiseki-wp-config",
-      "slug": "wp-config",
-      "title": "kaiseki/wp-config",
-      "description": "Type-safe access to array configurations",
-      "repo": "kaiseki-wp-config",
       "group": "wordpress-core",
       "hasDocs": false,
       "hidden": false,
